@@ -1,4 +1,5 @@
-<table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+<table  mat-table [dataSource]="dataSource" class="mat-elevation-z8" >
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   
@@ -48,7 +49,7 @@
     <ng-container matColumnDef="modifica">
       <th mat-header-cell *matHeaderCellDef>Modifica</th>
       <td mat-cell *matCellDef="let element">
-        <button (click)="editFn(element._links.self.href)">
+        <button (click)="this.currentEmployee = element">
           <mat-icon>edit</mat-icon>
         </button>
       </td>
@@ -64,5 +65,20 @@
   <button [disabled]="!data?._links?.next" (click)="nextPage()">&gt;</button>
   <button (click)="lastPage()">&gt;&gt;</button>
   <br>
+  <button (click)="newEmployee()">add</button>
+</div>
+
+
+
+<div *ngIf="currentEmployee">
+  id:<input [(ngModel)]="currentEmployee.id" type="text">
+  firstName:<input [(ngModel)]="currentEmployee.firstName" type="text">
+  lastName: <input [(ngModel)]="currentEmployee.lastName" type="text">
+  hireDate: <input [(ngModel)]="currentEmployee.hireDate" type="text">
+  birthDate: <input [(ngModel)]="currentEmployee.birthDate" type="text">
+  gender: <input [(ngModel)]="currentEmployee.gender" type="text">
   
 </div>
+
+{{currentEmployee | json}}
+

@@ -15,6 +15,7 @@ export class MyTableComponent {
   dataSource: MatTableDataSource<Employee>
   displayedCollumns: string [] = ["id", "birthDate","firstName","lastName","gender","hireDate", "elimina","modifica"];
   currentUrl: string = "http://localhost:8080/employees";
+  currentEmployee: Employee | undefined;
 
   
   constructor(private employeeService: EmployeeService){
@@ -22,7 +23,12 @@ export class MyTableComponent {
     this.dataSource = new MatTableDataSource(this.data?._embedded.employees);
   }
 
-  loadData(url: string)
+  newEmployee() {
+    this.currentEmployee = {id: 0, firstName:"", lastName: "", hireDate: "", birthDate: "", gender: ""};
+    //this.currentEmployee
+  }
+
+  loadData(url: string) 
   {
     this.currentUrl = url;
     this.employeeService.getData(url).subscribe(
@@ -32,6 +38,8 @@ export class MyTableComponent {
       }
     )
   }
+
+
   deleteFn(urlWithId: string) 
   {
     this.employeeService.delete(urlWithId).subscribe( (data) => {
@@ -39,13 +47,8 @@ export class MyTableComponent {
       }
     );
   }
-  editFn(urlWithId: string)
-  {
-      this.employeeService.edit(urlWithId).subscribe( (data) => {
-      this.loadData(this.currentUrl);
-    }
-    );
-  }
+
+
 
   firstPage(){
     if (this.data) this.loadData(this.data._links.first.href);

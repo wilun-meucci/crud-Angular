@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
-import { ServerData } from './types/employee';
+import { Employee, ServerData } from './types/employee';
 import { Observable } from 'rxjs';
 import { retry,catchError } from 'rxjs/operators';
 @Injectable({
@@ -21,7 +21,10 @@ export class EmployeeService {
     return this.http.delete(urlWithId, {});
   }
 
-  edit(urlWithId :string): Observable<any> {
+  edit(urlWithId :string, Employee: Employee): Observable<any> {
     return this.http.put(urlWithId, {});
+  }
+  add(Employee: Employee): Observable<any> {
+    return this.http.post("http://localhost:8080/employees", {});
   }
 }

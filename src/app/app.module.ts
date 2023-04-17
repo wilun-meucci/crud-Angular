@@ -6,14 +6,17 @@ import { AppComponent } from './app.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { EmployeeService } from './employee.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatIconModule} from '@angular/material/icon'
+import {MatIconModule} from '@angular/material/icon';
+import { EmployeeFormComponent } from './employee-form/employee-form.component'
+import { FormsModule } from '@angular/forms';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    MyTableComponent
+    MyTableComponent,
+    EmployeeFormComponent
   ],
   imports: [
     BrowserModule,
@@ -21,6 +24,7 @@ import {MatIconModule} from '@angular/material/icon'
     BrowserAnimationsModule,
     MatTableModule,
     MatIconModule,
+    FormsModule
   ],
   providers: [
     EmployeeService

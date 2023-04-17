@@ -7,5 +7,17 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'crud';
+  visibleForm: boolean = false
   
+
+  hideForm()
+  {
+    this.visibleForm = false;
+  }
+
+  showForm()
+  {
+    this.visibleForm = true;
+  }
+
 }

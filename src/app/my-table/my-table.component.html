@@ -1,5 +1,4 @@
 <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
-
     <!--- Note that these columns can be defined in any order.
           The actual rendered columns are set as a property on the row definition" -->
   
@@ -8,7 +7,7 @@
       <th mat-header-cell *matHeaderCellDef> id </th>
       <td mat-cell *matCellDef="let element"> {{element.id}} </td>
     </ng-container>
-  
+    
     <!-- Name Column -->
     <ng-container matColumnDef="firstName">
       <th mat-header-cell *matHeaderCellDef> firstName </th>
@@ -36,8 +35,34 @@
     <ng-container matColumnDef="birthDate">
         <th mat-header-cell *matHeaderCellDef> birthDate </th>
         <td mat-cell *matCellDef="let element"> {{element.birthDate}} </td>
-        
+    </ng-container>
+    
+    <ng-container matColumnDef="elimina">
+      <th mat-header-cell *matHeaderCellDef>Elimina</th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="deleteFn(element._links.self.href)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="modifica">
+      <th mat-header-cell *matHeaderCellDef>Modifica</th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="editFn(element._links.self.href)">
+          <mat-icon>edit</mat-icon>
+        </button>
+      </td>
     </ng-container>
     <tr mat-header-row *matHeaderRowDef="displayedCollumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedCollumns;"></tr>
 </table>
+
+<div class="buttons">
+  <button (click)="firstPage()">&lt;&lt;</button>
+  <button [disabled]="!data?._links?.prev" (click)="prevPage()">&lt;</button>
+  <div>{{data?.page?.number}}</div>
+  <button [disabled]="!data?._links?.next" (click)="nextPage()">&gt;</button>
+  <button (click)="lastPage()">&gt;&gt;</button>
+  <br>
+  
+</div>

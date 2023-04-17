@@ -6,6 +6,9 @@ import { AppComponent } from './app.component';
 import { MyTableComponent } from './my-table/my-table.component';
 import { EmployeeService } from './employee.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatIconModule} from '@angular/material/icon'
+
+
 
 @NgModule({
   declarations: [
@@ -16,7 +19,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatTableModule
+    MatTableModule,
+    MatIconModule,
   ],
   providers: [
     EmployeeService

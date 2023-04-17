@@ -17,4 +17,11 @@ export class EmployeeService {
     .set('size',size || 10)
     return this.http.get<ServerData>(url,{params: params});
   }
+  delete(urlWithId :string): Observable<any> {
+    return this.http.delete(urlWithId, {});
+  }
+
+  edit(urlWithId :string): Observable<any> {
+    return this.http.put(urlWithId, {});
+  }
 }
